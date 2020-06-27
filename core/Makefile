@@ -6164,7 +6164,7 @@ INTERNAL_OTA_METADATA := $(PRODUCT_OUT)/ota_metadata
 
 $(call declare-0p-target,$(INTERNAL_OTA_METADATA))
 
-ifeq ($(TARGET_BUILD_VARIANT),user)
+ifeq ($(TARGET_EXCLUDE_BACKUPTOOL),true)
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := false
 else
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := true
