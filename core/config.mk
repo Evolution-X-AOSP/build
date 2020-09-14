@@ -126,7 +126,6 @@ $(KATI_obsolete_var \
   ARCH_X86_HAVE_SSSE3 \
 )
 $(KATI_obsolete_var PRODUCT_IOT)
-$(KATI_obsolete_var MD5SUM)
 $(KATI_obsolete_var BOARD_HAL_STATIC_LIBRARIES, See $(CHANGES_URL)#BOARD_HAL_STATIC_LIBRARIES)
 $(KATI_obsolete_var LOCAL_HAL_STATIC_LIBRARIES, See $(CHANGES_URL)#BOARD_HAL_STATIC_LIBRARIES)
 $(KATI_obsolete_var \
@@ -711,6 +710,13 @@ EXTRACT_KERNEL := build/make/tools/extract_kernel.py
 HOST_JDK_TOOLS_JAR := $(ANDROID_JAVA8_HOME)/lib/tools.jar
 
 APICHECK_COMMAND := $(JAVA) -Xmx4g -jar $(APICHECK) --no-banner
+
+# It's called md5 on Mac OS and md5sum on Linux
+ifeq ($(HOST_OS),darwin)
+MD5SUM:=md5 -q
+else
+MD5SUM:=md5sum
+endif
 
 # Boolean variable determining if the allow list for compatible properties is enabled
 PRODUCT_COMPATIBLE_PROPERTY := true
