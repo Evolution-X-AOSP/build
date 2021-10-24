@@ -97,10 +97,10 @@ class EdifyGenerator(object):
     """Assert that the current recovery build fingerprint is one of *fp."""
     if not fp:
       raise ValueError("must specify some fingerprints")
-    cmd = (' ||\n    '.join([('getprop("ro.build.fingerprint") == "%s"') % i
+    cmd = (' ||\n    '.join([('getprop("ro.system_ext.build.fingerprint") == "%s"') % i
                              for i in fp]) +
            ' ||\n    abort("E%d: Package expects build fingerprint of %s; '
-           'this device has " + getprop("ro.build.fingerprint") + ".");') % (
+           'this device has " + getprop("ro.system_ext.build.fingerprint") + ".");') % (
                common.ErrorCode.FINGERPRINT_MISMATCH, " or ".join(fp))
     self.script.append(cmd)
 
@@ -118,11 +118,11 @@ class EdifyGenerator(object):
   def AssertFingerprintOrThumbprint(self, fp, tp):
     """Assert that the current recovery build fingerprint is fp, or thumbprint
        is tp."""
-    cmd = ('getprop("ro.build.fingerprint") == "{fp}" ||\n'
+    cmd = ('getprop("ro.system_ext.build.fingerprint") == "{fp}" ||\n'
            '    getprop("ro.build.thumbprint") == "{tp}" ||\n'
            '    abort("Package expects build fingerprint of {fp} or '
            'thumbprint of {tp}; this device has a fingerprint of " '
-           '+ getprop("ro.build.fingerprint") + " and a thumbprint of " '
+           '+ getprop("ro.system_ext.build.fingerprint") + " and a thumbprint of " '
            '+ getprop("ro.build.thumbprint") + ".");').format(fp=fp, tp=tp)
     self.script.append(cmd)
 
