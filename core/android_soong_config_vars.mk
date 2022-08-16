@@ -107,9 +107,10 @@ endif
 
 ifneq (,$(ART_MODULE_BUILD_FROM_SOURCE))
   # Keep an explicit setting.
-else ifneq (,$(findstring .android.art,$(TARGET_BUILD_APPS)))
+else ifdef MODULE_BUILD_FROM_SOURCE
   # Build ART modules from source if they are listed in TARGET_BUILD_APPS.
   ART_MODULE_BUILD_FROM_SOURCE := true
+  OPTIONAL_MODULE_BUILD_FROM_SOURCE := true
 else
   # Do the same as other modules by default.
   ART_MODULE_BUILD_FROM_SOURCE := $(MODULE_BUILD_FROM_SOURCE)
@@ -138,7 +139,7 @@ INDIVIDUALLY_TOGGLEABLE_PREBUILT_MODULES := \
 
 $(foreach m, $(INDIVIDUALLY_TOGGLEABLE_PREBUILT_MODULES),\
   $(if $(call soong_config_get,$(m)_module,source_build),,\
-    $(call soong_config_set,$(m)_module,source_build,$(MODULE_BUILD_FROM_SOURCE))))
+    $(call soong_config_set,$(m)_module,source_build,$(OPTIONAL_MODULE_BUILD_FROM_SOURCE))))
 
 # Apex build mode variables
 ifdef APEX_BUILD_FOR_PRE_S_DEVICES
@@ -149,7 +150,7 @@ $(call add_soong_config_var_value,ANDROID,library_linking_strategy,prefer_static
 endif
 endif
 
-ifeq (true,$(MODULE_BUILD_FROM_SOURCE))
+ifdef MODULE_BUILD_FROM_SOURCE
 $(call add_soong_config_var_value,ANDROID,module_build_from_source,true)
 endif
 
