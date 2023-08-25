@@ -68,7 +68,6 @@ PRODUCT_PACKAGES += \
     SimAppDialog \
     Telecom \
     TelephonyProvider \
-    TeleService \
     UserDictionaryProvider \
     VpnDialogs \
     vr \
