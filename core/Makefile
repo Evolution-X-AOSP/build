@@ -891,7 +891,7 @@ $(call dist-for-goals,droidcore-unbundled,$(MK2BP_REMAINING_CSV))
 mk2bp_remaining: $(MK2BP_REMAINING_HTML) $(MK2BP_REMAINING_CSV)
 
 # -----------------------------------------------------------------
-# Modules use -Wno-error, or added default -Wall -Werror
+# Modules use -Wno-error, or added default -Wall
 WALL_WERROR := $(PRODUCT_OUT)/wall_werror.txt
 $(WALL_WERROR):
 	@rm -f $@
