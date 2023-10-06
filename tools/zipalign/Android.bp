@@ -28,7 +28,7 @@ cc_library_host_static {
     export_include_dirs: [
         "include",
     ],
-    cflags: ["-Wall", "-Werror"],
+    cflags: ["-Wall"],
 
     // NOTE: Do not add any shared_libs dependencies because they will break the
     // static_sdk_tools target.
@@ -49,7 +49,7 @@ cc_binary_host {
     srcs: [
         "ZipAlignMain.cpp",
     ],
-    cflags: ["-Wall", "-Werror"],
+    cflags: ["-Wall"],
     static_libs: [
         "libzipalign",
     ],

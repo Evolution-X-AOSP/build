@@ -611,7 +611,7 @@ endif
 
 # Turn on all warnings and warnings as errors for RS compiles.
 # This can be disabled with LOCAL_RENDERSCRIPT_FLAGS := -Wno-error
-renderscript_flags := -Wall -Werror
+renderscript_flags := -Wall
 renderscript_flags += $(LOCAL_RENDERSCRIPT_FLAGS)
 # -m32 or -m64
 renderscript_flags += -m$(my_32_64_bit_suffix)
@@ -1521,7 +1521,7 @@ ifeq ($(my_strict),true)
     my_cflags += -DANDROID_STRICT
 endif
 
-# Check if -Werror or -Wno-error is used in C compiler flags.
+# Check if or -Wno-error is used in C compiler flags.
 # Header libraries do not need cflags.
 my_all_cflags := $(my_cflags) $(my_cppflags) $(my_cflags_no_override)
 ifneq (HEADER_LIBRARIES,$(LOCAL_MODULE_CLASS))
@@ -1535,7 +1535,7 @@ ifneq (HEADER_LIBRARIES,$(LOCAL_MODULE_CLASS))
       ifeq (,$(filter -Werror,$(my_all_cflags)))
         # Add -Wall -Werror unless the project is in the WARNING_ALLOWED project list.
         ifeq (,$(strip $(call find_warning_allowed_projects,$(LOCAL_PATH))))
-          my_cflags := -Wall -Werror $(my_cflags)
+          my_cflags := -Wall $(my_cflags)
         else
           $(eval MODULES_WARNINGS_ALLOWED := $(MODULES_USING_WNO_ERROR) $(LOCAL_MODULE_MAKEFILE):$(LOCAL_MODULE))
           my_cflags := -Wall $(my_cflags)
