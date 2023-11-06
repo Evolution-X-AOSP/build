@@ -1214,11 +1214,11 @@ def _FindAndLoadRecoveryFstab(info_dict, input_file, read_helper):
     recovery_fstab_path = 'RECOVERY/RAMDISK/system/etc/recovery.fstab'
     if isinstance(input_file, zipfile.ZipFile):
       if recovery_fstab_path not in input_file.namelist():
-        recovery_fstab_path = 'RECOVERY/RAMDISK/etc/recovery.fstab'
+        recovery_fstab_path = 'RECOVERY/RAMDISK/system/etc/recovery.fstab'
     else:
       path = os.path.join(input_file, *recovery_fstab_path.split('/'))
       if not os.path.exists(path):
-        recovery_fstab_path = 'RECOVERY/RAMDISK/etc/recovery.fstab'
+        recovery_fstab_path = 'RECOVERY/RAMDISK/system/etc/recovery.fstab'
     return LoadRecoveryFSTab(
         read_helper, info_dict['fstab_version'], recovery_fstab_path,
         system_root_image)
