@@ -1234,7 +1234,7 @@ def _FindAndLoadRecoveryFstab(info_dict, input_file, read_helper):
   if info_dict.get('no_recovery') != 'true':
     recovery_fstab_path = 'RECOVERY/RAMDISK/system/etc/recovery.fstab'
     if not DoesInputFileContain(input_file, recovery_fstab_path):
-      recovery_fstab_path = 'RECOVERY/RAMDISK/etc/recovery.fstab'
+      recovery_fstab_path = 'RECOVERY/RAMDISK/system/etc/recovery.fstab'
     return LoadRecoveryFSTab(
         read_helper, info_dict['fstab_version'], recovery_fstab_path)
 
