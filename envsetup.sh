@@ -150,6 +150,10 @@ function build_build_var_cache()
         return $ret
     fi
     BUILD_VAR_CACHE_READY="true"
+    GENTOO_ID=/etc/gentoo-release
+    if test -f "$GENTOO_ID"; then
+        unset LEX
+    fi
 }
 
 # Delete the build var cache, so that we can still call into the build system
