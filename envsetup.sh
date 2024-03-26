@@ -217,7 +217,7 @@ function check_product()
     if (echo -n $1 | grep -q -e "^evolution_") ; then
         EVOLUTION_BUILD=$(echo -n $1 | sed -e 's/^evolution_//g')
     else
-        EVOLUTION_BUILD=
+        EVOLUTION_BUILD=$TARGET_PRODUCT
     fi
     export EVOLUTION_BUILD
 
