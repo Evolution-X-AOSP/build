@@ -895,7 +895,6 @@ function lunch()
     fixup_common_out_dir
 
     set_stuff_for_environment
-    [[ -n "${ANDROID_QUIET_BUILD:-}" ]] || printconfig
 
     if [ $used_lunch_menu -eq 1 ]; then
       echo
@@ -907,6 +906,8 @@ function lunch()
     if [[ -n "${CHECK_MU_CONFIG:-}" ]]; then
       check_mu_config
     fi
+
+    [[ -n "${ANDROID_QUIET_BUILD:-}" ]] || printconfig
 }
 
 unset COMMON_LUNCH_CHOICES_CACHE
