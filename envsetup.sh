@@ -790,8 +790,8 @@ function lunch()
         answer=$1
     else
         print_lunch_menu
-        echo "Which would you like? [aosp_arm-trunk_staging-eng]"
-        echo -n "Pick from common choices above (e.g. 13) or specify your own (e.g. aosp_barbet-trunk_staging-eng): "
+        echo "Which would you like? [aosp_arm-ap1a-eng]"
+        echo -n "Pick from common choices above (e.g. 13) or specify your own (e.g. aosp_barbet-ap1a-eng): "
         read answer
         used_lunch_menu=1
     fi
@@ -800,7 +800,7 @@ function lunch()
 
     if [ -z "$answer" ]
     then
-        selection=aosp_arm-trunk_staging-eng
+        selection=aosp_arm-ap1a-eng
     elif (echo -n $answer | grep -q -e "^[0-9][0-9]*$")
     then
         local choices=($(TARGET_BUILD_APPS= get_build_var COMMON_LUNCH_CHOICES))
@@ -934,7 +934,7 @@ function tapas()
     local showHelp="$(echo $* | xargs -n 1 echo | \grep -E '^(help)$' | xargs)"
     local arch="$(echo $* | xargs -n 1 echo | \grep -E '^(arm|x86|arm64|x86_64)$' | xargs)"
     # TODO(b/307975293): Expand tapas to take release arguments (and update hmm() usage).
-    local release="trunk_staging"
+    local release="ap1a"
     local variant="$(echo $* | xargs -n 1 echo | \grep -E '^(user|userdebug|eng)$' | xargs)"
     local density="$(echo $* | xargs -n 1 echo | \grep -E '^(ldpi|mdpi|tvdpi|hdpi|xhdpi|xxhdpi|xxxhdpi|alldpi)$' | xargs)"
     local keys="$(echo $* | xargs -n 1 echo | \grep -E '^(devkeys)$' | xargs)"
@@ -1007,7 +1007,7 @@ function banchan()
     local showHelp="$(echo $* | xargs -n 1 echo | \grep -E '^(help)$' | xargs)"
     local product="$(echo $* | xargs -n 1 echo | \grep -E '^(.*_)?(arm|x86|arm64|riscv64|x86_64|arm64only|x86_64only)$' | xargs)"
     # TODO: Expand banchan to take release arguments (and update hmm() usage).
-    local release="trunk_staging"
+    local release="ap1a"
     local variant="$(echo $* | xargs -n 1 echo | \grep -E '^(user|userdebug|eng)$' | xargs)"
     local apps="$(echo $* | xargs -n 1 echo | \grep -E -v '^(user|userdebug|eng|(.*_)?(arm|x86|arm64|riscv64|x86_64))$' | xargs)"
 
